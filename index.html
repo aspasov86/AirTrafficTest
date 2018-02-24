@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Air Traffic Test v1.0</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <a href="#/list" class="navbar-brand">Air Traffic Test v1.0</a>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <main id="wrapp">
+
+
+    </main>
+  </div>
+
+
+
+  <script type="text/template" id="geolocation">
+
+    <div class="col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 text-center">
+      <article class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Geolocation</h3>
+        </div>
+        <div class="panel-body">
+          <p>We need your permission to use your geolocation.</p>
+        </div>
+        <div class="panel-footer">
+          <a href="#list" class="btn btn-primary" id="allow">Allow</a>
+          <button class="btn btn-primary" id="deny">Deny</button>
+        </div>
+      </article>
+    </div>
+
+  </script>
+  <script type="text/template" id="list">
+
+    <div class="col-sm-8 col-sm-offset-2">
+      <h1 class="text-center">Flights</h1>
+
+      <ul class="list-group" id="ul">
+
+      </ul>
+    </div>
+
+  </script>
+  <script type="text/template" id="flight">
+
+    <li class="list-group-item">
+      <a href="#/{{Flight code number}}"  data-id="{{Flight code number}}" class="list-group-item flights">
+        <img class="img-responsive" src="img/airplane-{{direction}}.png" alt="airplane">
+        Altitude: {{Altitude}};
+        Flight code number : {{Flight code number}}
+      </a>
+    </li>
+
+  </script>
+  <script type="text/template" id="flightPage">
+
+    <article class="media">
+      <div class="media-left">
+        <img src="https://logo-core.clearbit.com/{{airline}}.com?size=70" alt="{{airline}}">
+      </div>
+        <div class="media-body">
+          <h4 class="media-heading">Manufacturer and Model: {{ManuAndModel}}</h4>
+          <h4 class="media-heading">Destination: {{Destination}}</h4>
+          <h4 class="media-heading">Flight Origin airport: {{Origin}}</h4>
+        </div>
+    </article>
+
+  </script>
+  <script src="js/ajax.js" charset="utf-8"></script>
+  <script src="js/main.js" charset="utf-8"></script>
+</body>
+</html>
