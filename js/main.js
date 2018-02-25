@@ -75,10 +75,7 @@ function geolocAndDataInit() {
   function applyPosition(position) {
      let lat = position.coords.latitude;
      let lng = position.coords.longitude;
-
-     console.log("Refreshing the list...");
      data.getData(lat, lng).then(function (res) {
-        console.log("data", res);
        //prevent list regeneration if there are no planes
        //or nothing to update
        if (res.acList.length > 0) {
@@ -87,9 +84,6 @@ function geolocAndDataInit() {
      })
   }
 }
-
-
-
 
 function createList(res) {
   let listTemp = document.querySelector("#list").innerHTML;
@@ -104,12 +98,13 @@ function createList(res) {
     let text = "";
     let flightsList = "";
     //adding flights info to the flights array
+    //some of them are sometimes not inluded at all
     for (var i = 0; i < res.acList.length; i++) {
       flights.push({
         direction : res.acList[i].Brng < 180 ? "right" : "left",
         Altitude : res.acList[i].Alt,
         Id : res.acList[i].Id,
-        airline : res.acList[i].Op.replace(/ /g, ""),
+        airline : res.acList[i].Op ? res.acList[i].Op.replace(/ /g, "") : "N/A",
         ManuAndModel : res.acList[i].Mdl,
         Destination : res.acList[i].To || "N/A",
         Origin : res.acList[i].From || "N/A"

@@ -30,6 +30,10 @@ h1 {
   transition: all 0.4s ease-out;
 }
 
+.lis, .info {
+  box-shadow: 0 0 16px gray;
+}
+
 .show {
   opacity: 1;
 }
@@ -44,8 +48,7 @@ h1 {
 
 .border {
   padding: 0;
-  border: 20px solid;
-  border-image: linear-gradient(to right, #4C4D6B, #3D2340);
+  border: 10px solid #4C4D6B;
 }
 
 @media only screen and (max-width: 927px) {
