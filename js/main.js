@@ -1,14 +1,19 @@
 let container = document.querySelector('#wrapp');
 
+window.addEventListener("load", router);
+window.addEventListener("hashchange", router);
 
-defaultPage();
+function router() {
+  if (location.hash == "#/list" || location.hash == "#list" || location.hash == "") {
+    defaultPage();
+  }
+}
 
 //permission page should show up only once
 function defaultPage() {
   if (localStorage.geolocationPermission) {
     startApp();
   } else {
-    localStorage.setItem("geolocationPermission", true);
     permissionPage();
   }
 }
@@ -31,6 +36,7 @@ function permissionPage() {
 
 //display warning if the user doesn't grant the permission for geolocation
 function cantStart() {
+
   let panelBody = document.querySelector('.panel-body');
   let defPanelBody = document.querySelector('.panel-body').innerHTML;
 
@@ -44,6 +50,8 @@ function cantStart() {
 function startApp() {
   //resetting the url
   location.hash = "#/list";
+
+  localStorage.setItem("geolocationPermission", true);
 
   getLocation();
 }
@@ -65,10 +73,13 @@ function applyPosition(position) {
   //adjust when you resolve CORS problems
 
   dataInit();
+  // ????
+  //resolve this with lastDv - it needs to fetch updates
   setInterval(dataInit, 60000)
 }
 
 function dataInit() {
+  console.log("Refreshing the list...");
   data.getData("AircraftList.json").then(function (res) {
       createList(res);
   })
@@ -114,6 +125,19 @@ function createList(res) {
         flightsList += text;
     }
   ul.innerHTML = flightsList;
+
+  //list appear animation
+  let li = document.querySelectorAll('.lis');
+  let counter = 0;
+  let loop = setInterval(function () {
+    li[counter].classList.add("show");
+    counter++;
+    if (counter == li.length) {
+      clearInterval(loop);
+    }
+  },300)
+
+
   //adding click event for each flight
   listItemEvents(flights)
   });

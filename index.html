@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Air Traffic Test v1.0</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -15,7 +17,7 @@
     </div>
   </nav>
 
-  <div class="container-fluid">
+  <div class="container-fluid main">
     <main id="wrapp">
 
 
@@ -26,7 +28,7 @@
 
   <script type="text/template" id="geolocation">
 
-    <div class="col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 text-center">
+    <div class="col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 text-center mt">
       <article class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Geolocation</h3>
@@ -35,7 +37,7 @@
           <p>We need your permission to use your geolocation.</p>
         </div>
         <div class="panel-footer">
-          <a href="#list" class="btn btn-primary" id="allow">Allow</a>
+          <a href="#/list" class="btn btn-primary" id="allow">Allow</a>
           <button class="btn btn-primary" id="deny">Deny</button>
         </div>
       </article>
@@ -44,7 +46,7 @@
   </script>
   <script type="text/template" id="list">
 
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
       <h1 class="text-center">Flights</h1>
 
       <ul class="list-group" id="ul">
@@ -55,27 +57,38 @@
   </script>
   <script type="text/template" id="flight">
 
-    <li class="list-group-item">
+    <li class="list-group-item lis">
       <a href="#/{{Flight code number}}"  data-id="{{Flight code number}}" class="list-group-item flights">
-        <img class="img-responsive" src="img/airplane-{{direction}}.png" alt="airplane">
-        Altitude: {{Altitude}};
-        Flight code number : {{Flight code number}}
+        <article class="media">
+          <div class="media-left">
+            <img src="img/airplane-{{direction}}.png" alt="airplane">
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">Altitude: {{Altitude}}</h4>
+            <h4 class="media-heading">Flight code number : {{Flight code number}}</h4>
+          </div>
+        </article>
       </a>
     </li>
 
   </script>
   <script type="text/template" id="flightPage">
 
-    <article class="media">
-      <div class="media-left">
-        <img src="https://logo-core.clearbit.com/{{airline}}.com?size=70" alt="{{airline}}">
-      </div>
-        <div class="media-body">
-          <h4 class="media-heading">Manufacturer and Model: {{ManuAndModel}}</h4>
-          <h4 class="media-heading">Destination: {{Destination}}</h4>
-          <h4 class="media-heading">Flight Origin airport: {{Origin}}</h4>
+  <div class="panel panel-default col-sm-6 col-sm-offset-3 mt">
+
+    <div class="panel-body info">
+      <article class="media">
+        <div class="media-left">
+          <img src="https://logo-core.clearbit.com/{{airline}}.com?size=70" alt="{{airline}}">
         </div>
-    </article>
+          <div class="media-body">
+            <h4 class="media-heading">Manufacturer and Model: {{ManuAndModel}}</h4>
+            <h4 class="media-heading">Destination: {{Destination}}</h4>
+            <h4 class="media-heading">Flight Origin airport: {{Origin}}</h4>
+          </div>
+      </article>
+    </div>
+  </div>
 
   </script>
   <script src="js/ajax.js" charset="utf-8"></script>

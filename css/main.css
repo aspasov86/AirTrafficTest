@@ -1,0 +1,43 @@
+body {
+  font-family: "Operator Mono SSm A", "Operator Mono SSm B", 'Source Code Pro';
+  background-image: url('../img/background.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% contain;
+}
+
+h1 {
+  color: white;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.flights {
+  background: linear-gradient(to right, #3D2340, #CB9D8E);
+  color: white !important;
+  font-size: 20px;
+}
+
+.info {
+  background: linear-gradient(to right, #3D2340, #CB9D8E);
+  color: white !important;
+}
+
+.lis {
+  background: linear-gradient(to right, #4C4D6B, #3D2340);
+  opacity: 0;
+  transition: all 0.4s ease-out;
+}
+
+.show {
+  opacity: 1;
+}
+
+.flights:hover {
+  background: linear-gradient(to right, #CB9D8E, #3D2340);
+}
+
+.mt {
+  margin-top: 5vh;
+}
