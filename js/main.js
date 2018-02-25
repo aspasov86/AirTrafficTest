@@ -3,6 +3,9 @@ let container = document.querySelector('#wrapp');
 window.addEventListener("load", router);
 window.addEventListener("hashchange", router);
 
+//update data every minute
+let refresh = setInterval(geolocAndDataInit, 60000);
+
 function router() {
   if (location.hash == "#/list" || location.hash == "#list" || location.hash == "") {
     defaultPage();
@@ -59,12 +62,6 @@ function getLocation() {
     //taking the data from ADS-B
     geolocAndDataInit()
 
-    //update data every minute
-    let refresh = setInterval(geolocAndDataInit, 60000);
-    //prevent piling intervals when switching from the list page to detailed look
-    window.onhashchange = function () {
-      clearInterval(refresh);
-    }
   } else {
     container.innerHTML = '<h1>Geolocation is not supported by this browser</h1>';
   }
@@ -152,6 +149,9 @@ function listItemEvents(flights) {
     flightLi[i].addEventListener("click", flightDetailPage)
   }
   function flightDetailPage() {
+    //prevent piling intervals when switching from the list page to detailed look
+    clearInterval(refresh);
+    
     //searching for the choosen flight
     let id = this.getAttribute("data-id");
     let flightDetail = flights.filter(function (e) {
