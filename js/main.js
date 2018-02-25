@@ -36,7 +36,6 @@ function permissionPage() {
 
 //display warning if the user doesn't grant the permission for geolocation
 function cantStart() {
-
   let panelBody = document.querySelector('.panel-body');
   let defPanelBody = document.querySelector('.panel-body').innerHTML;
 
@@ -48,42 +47,48 @@ function cantStart() {
 
 
 function startApp() {
-  //resetting the url
-  location.hash = "#/list";
-
+  //remember the permission
   localStorage.setItem("geolocationPermission", true);
-
+  //get geoloaction
   getLocation();
 }
 
 //taking the location
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(applyPosition);
+    //taking the data from ADS-B
+    geolocAndDataInit()
+
+    //update data every minute
+    let refresh = setInterval(geolocAndDataInit, 60000);
+    //prevent piling intervals when switching from the list page to detailed look
+    window.onhashchange = function () {
+      clearInterval(refresh);
+    }
   } else {
     container.innerHTML = '<h1>Geolocation is not supported by this browser</h1>';
   }
 }
 
+function geolocAndDataInit() {
+  navigator.geolocation.getCurrentPosition(applyPosition);
+  function applyPosition(position) {
+     let lat = position.coords.latitude;
+     let lng = position.coords.longitude;
 
-function applyPosition(position) {
-  let lat = position.coords.latitude;
-  let lng = position.coords.longitude;
-  // ????
-  //adjust when you resolve CORS problems
-
-  dataInit();
-  // ????
-  //resolve this with lastDv - it needs to fetch updates
-  setInterval(dataInit, 60000)
+     console.log("Refreshing the list...");
+     data.getData(lat, lng).then(function (res) {
+        console.log("data", res);
+       //prevent list regeneration if there are no planes
+       //or nothing to update
+       if (res.acList.length > 0) {
+           createList(res);
+       }
+     })
+  }
 }
 
-function dataInit() {
-  console.log("Refreshing the list...");
-  data.getData("AircraftList.json").then(function (res) {
-      createList(res);
-  })
-}
+
 
 
 function createList(res) {
@@ -95,7 +100,6 @@ function createList(res) {
   let flightTemp = document.querySelector("#flight").innerHTML;
 
   // generating the list
-  data.getData("AircraftList.json").then(function (res) {
     let flights = [];
     let text = "";
     let flightsList = "";
@@ -124,11 +128,19 @@ function createList(res) {
 
         flightsList += text;
     }
-  ul.innerHTML = flightsList;
+    ul.innerHTML = flightsList;
 
-  //list appear animation
+  //list-items-appearing animation
+  listItemsAnimation();
+
+  //adding click event for each flight
+  listItemEvents(flights);
+}
+
+function listItemsAnimation() {
   let li = document.querySelectorAll('.lis');
   let counter = 0;
+
   let loop = setInterval(function () {
     li[counter].classList.add("show");
     counter++;
@@ -136,11 +148,6 @@ function createList(res) {
       clearInterval(loop);
     }
   },300)
-
-
-  //adding click event for each flight
-  listItemEvents(flights)
-  });
 }
 
 function listItemEvents(flights) {

@@ -1,31 +1,14 @@
-function DB() {
-    this.xml = new XMLHttpRequest();
-    this.getData = function(url) {
-      return new Promise((resolve, reject) => {
-        this.xml.open("GET", url);
-        this.xml.onreadystatechange = () => {
-          if (this.xml.readyState == 4 && this.xml.status == 200) {
-            resolve(JSON.parse(this.xml.responseText));
-          }
-        }
-        this.xml.send();
+//The easiest way to go around CORS
+function Ajax() {
+    this.getData = function(lat, lng) {
+      return $.ajax({
+        method: 'GET',
+        url: `https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${lat}&lng=${lng}&fDstL=0&fDstU=100`,
+        dataType: 'jsonp',
+        success: (res) => res
       })
     }
-    this.getUpdates = function (url, lastDv) {
-      return new Promise((resolve, reject) => {
-        this.xml.open("POST", url);
-        this.xml.onreadystatechange = () => {
-          if (this.xml.readyState == 4 && this.xml.status == 200) {
-            resolve(JSON.parse(this.xml.responseText));
-          }
-        }
-        this.xml.send(lastDv);
-      })
 
-      //???
-      //resolve the lastDv issue
-      //maybe icaos
-    }
 }
 
-let data = new DB();
+let data = new Ajax();

@@ -41,3 +41,15 @@ h1 {
 .mt {
   margin-top: 5vh;
 }
+
+.border {
+  padding: 0;
+  border: 20px solid;
+  border-image: linear-gradient(to right, #4C4D6B, #3D2340);
+}
+
+@media only screen and (max-width: 927px) {
+  .d {
+    font-size: 15px;
+  }
+}

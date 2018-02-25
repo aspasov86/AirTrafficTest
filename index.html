@@ -18,11 +18,8 @@
   <div class="container-fluid main">
     <main id="wrapp">
 
-
     </main>
   </div>
-
-
 
   <script type="text/template" id="geolocation">
 
@@ -45,7 +42,7 @@
   <script type="text/template" id="list">
 
     <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
-      <h1 class="text-center">Flights</h1>
+      <h1 class="text-center">Planes over me</h1>
 
       <ul class="list-group" id="ul">
 
@@ -62,7 +59,7 @@
             <img src="img/airplane-{{direction}}.png" alt="airplane">
           </div>
           <div class="media-body">
-            <h4 class="media-heading">Altitude: {{Altitude}}</h4>
+            <h4 class="media-heading">Altitude: {{Altitude}} ft</h4>
             <h4 class="media-heading">Flight code number : {{Flight code number}}</h4>
           </div>
         </article>
@@ -72,23 +69,23 @@
   </script>
   <script type="text/template" id="flightPage">
 
-  <div class="panel panel-default col-sm-6 col-sm-offset-3 mt">
+  <div class="col-sm-8 col-sm-offset-2 mt border">
 
-    <div class="panel-body info">
-      <article class="media">
+      <article class="media info">
         <div class="media-left">
           <img src="https://logo-core.clearbit.com/{{airline}}.com?size=70" alt="{{airline}}">
         </div>
           <div class="media-body">
-            <h4 class="media-heading">Manufacturer and Model: {{ManuAndModel}}</h4>
-            <h4 class="media-heading">Destination: {{Destination}}</h4>
-            <h4 class="media-heading">Flight Origin airport: {{Origin}}</h4>
+            <h4 class="media-heading d">Manufacturer and Model: {{ManuAndModel}}</h4>
+            <h4 class="media-heading d">Destination: {{Destination}}</h4>
+            <h4 class="media-heading d">Flight Origin airport: {{Origin}}</h4>
           </div>
       </article>
-    </div>
+
   </div>
 
   </script>
+  <script src="js/jquery-3.3.1.js" charset="utf-8"></script>
   <script src="js/ajax.js" charset="utf-8"></script>
   <script src="js/main.js" charset="utf-8"></script>
 </body>
