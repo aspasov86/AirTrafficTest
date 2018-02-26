@@ -21,7 +21,7 @@ h1 {
 
 .info {
   background: linear-gradient(to right, #3D2340, #CB9D8E);
-  color: white !important;
+  color: orange !important;
 }
 
 .lis {
@@ -49,6 +49,10 @@ h1 {
 .border {
   padding: 0;
   border: 10px solid #4C4D6B;
+}
+
+.c {
+  color: white;
 }
 
 @media only screen and (max-width: 927px) {
