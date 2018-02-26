@@ -103,7 +103,7 @@ function createList(res) {
         Altitude : res.acList[i].Alt,
         Id : res.acList[i].Id,
         airline : res.acList[i].Op ? res.acList[i].Op.replace(/ /g, "") : "N/A",
-        ManuAndModel : res.acList[i].Mdl,
+        ManuAndModel : res.acList[i].Mdl  || "N/A",
         Destination : res.acList[i].To || "N/A",
         Origin : res.acList[i].From || "N/A"
 
