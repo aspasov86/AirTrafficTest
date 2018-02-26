@@ -9,18 +9,23 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+  <!-- Navigation -->
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <a href="#/list" class="navbar-brand">Air Traffic Test v1.0</a>
     </div>
   </nav>
+  <!-- Navigation END -->
 
+  <!-- Main Container -->
   <div class="container-fluid main">
     <main id="wrapp">
 
     </main>
   </div>
+  <!-- Main Container END -->
 
+  <!-- Geolocation Permission Template -->
   <script type="text/template" id="geolocation">
 
     <div class="col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 text-center mt">
@@ -37,19 +42,20 @@
         </div>
       </article>
     </div>
-
   </script>
+
+  <!-- Flight List Template -->
   <script type="text/template" id="list">
 
     <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
       <h1 class="text-center">Planes over me</h1>
-
       <ul class="list-group" id="ul">
 
       </ul>
     </div>
-
   </script>
+
+  <!-- Flight List Item Template -->
   <script type="text/template" id="flight">
 
     <li class="list-group-item lis">
@@ -65,14 +71,17 @@
         </article>
       </a>
     </li>
-
   </script>
+
+  <!-- Flight Detail Page Template -->
   <script type="text/template" id="flightPage">
 
-  <div class="col-sm-8 col-sm-offset-2 mt border">
-
+    <div class="col-sm-8 col-sm-offset-2 mt border">
       <article class="media info">
         <div class="media-left">
+          <!-- Not all will work with clerbit.com-->
+          <!-- I haven't found a way to automate it -->
+          <!-- Example: I get airline comp name "Middle East Airlines but the website is mea.com.lb" -->
           <img src="https://logo-core.clearbit.com/{{airline}}.com?size=70" alt="{{airline}}">
         </div>
           <div class="media-body">
@@ -81,10 +90,9 @@
             <h4 class="media-heading d">Flight Origin airport: <span class="c">{{Origin}}</span></h4>
           </div>
       </article>
-
-  </div>
-
+    </div>
   </script>
+
   <script src="js/jquery-3.3.1.js" charset="utf-8"></script>
   <script src="js/ajax.js" charset="utf-8"></script>
   <script src="js/main.js" charset="utf-8"></script>
